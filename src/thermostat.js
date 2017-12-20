@@ -5,6 +5,7 @@ function Thermostat(){
   this.maxTempSaveOff = 32
   this.powerSaveModeOn = true
   this.lowUsage = 18;
+  this.highUsage = 25
 };
 
 Thermostat.prototype.up = function(){
@@ -24,7 +25,8 @@ Thermostat.prototype.down = function(){
 Thermostat.prototype.powerSaveModeSwitch = function(){
   if (this.powerSaveModeOn === true) {
     return (this.powerSaveModeOn = false)
-  } else {
+  }
+  else {
     return (this.powerSaveModeOn = true)
   };
 };
@@ -37,4 +39,9 @@ Thermostat.prototype.usage = function(){
   if (this.temperature < this.lowUsage) {
     return 'Low usage';
   }
+  if (this.temperature > this.highUsage) {
+    return 'High usage'
+  }
+  else
+    return 'Medium usage'
 };

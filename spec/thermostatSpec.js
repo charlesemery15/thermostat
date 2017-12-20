@@ -42,10 +42,19 @@ describe('A Thermostat', function (){
     expect(thermostat.temperature).toEqual(20)
   });
   it('should comment on the energy usage being low at < 18', function(){
-      console.log(this.temperature)
     for( var i = 20; i >= 17; i--) {
       thermostat.down()
   }
   expect(thermostat.usage()).toEqual('Low usage')
+  });
+  it('should comment on the energy usage being high at > 25', function(){
+      thermostat.powerSaveModeSwitch()
+    for( var i = 0; i <= 6; i++) {
+      thermostat.up()
+  }
+  expect(thermostat.usage()).toEqual('High usage')
+  });
+  it('should comment on the energy usage being medium at 18 <= x < 25', function(){
+  expect(thermostat.usage()).toEqual('Medium usage')
   });
 });
