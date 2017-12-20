@@ -29,4 +29,23 @@ describe('A Thermostat', function (){
     }
     expect(function(){thermostat.up()}).toThrowError('Max temp in power saving mode set at 25 degrees')
   });
+  it('should have a max temp of 32 when power save mode is off', function(){
+    thermostat.powerSaveModeSwitch()
+    for( var i = 20; i <= 31; i++) {
+      thermostat.up()
+    }
+    expect(function(){thermostat.up()}).toThrowError('Max temp when power saving mode is off is 32 degrees')
+  });
+  it('should set the temperature to 20 degrees on reset', function(){
+    thermostat.down()
+    thermostat.reset()
+    expect(thermostat.temperature).toEqual(20)
+  });
+  it('should comment on the energy usage being low at < 18', function(){
+      console.log(this.temperature)
+    for( var i = 20; i >= 17; i--) {
+      thermostat.down()
+  }
+  expect(thermostat.usage()).toEqual('Low usage')
+  });
 });
