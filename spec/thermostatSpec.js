@@ -23,4 +23,10 @@ describe('A Thermostat', function (){
     }
     expect(function(){thermostat.down()}).toThrowError('Min temp set at 10 degrees')
   });
+  it('should have a max temp of 25 in power saving mode', function(){
+    for( var i = 20; i <= 24; i++) {
+      thermostat.up()
+    }
+    expect(function(){thermostat.up()}).toThrowError('Max temp in power saving mode set at 25 degrees')
+  });
 });
