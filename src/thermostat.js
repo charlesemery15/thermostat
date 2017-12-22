@@ -17,7 +17,7 @@ Thermostat.prototype.up = function(){
 };
 
 Thermostat.prototype.down = function(){
-  if(this.temperature < this.min_temp ){
+  if(this.temperature <= this.min_temp ){
     throw new Error('Min temp set at 10 degrees')};
   return this.temperature --;
 };
@@ -27,6 +27,7 @@ Thermostat.prototype.powerSaveModeSwitch = function(){
     return (this.powerSaveModeOn = false)
   }
   else {
+    if(this.temperature > this.maxTempSaveOn){ this.temperature = this.maxTempSaveOn }
     return (this.powerSaveModeOn = true)
   };
 };
